@@ -1,0 +1,164 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitTrack | Fitness & Wellness</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<header class="header">
+    <h1>💚 FitTrack</h1>
+    <p>Your Personal Fitness & Wellness Tracker</p>
+</header>
+
+<main class="container">
+
+    <div class="welcome">
+        <h2>My Fitness Dashboard</h2>
+        <p>Stay active, eat healthy and track your progress!</p>
+        <label for="trackingDate">Select Date:</label>
+        <input type="date" id="trackingDate">
+    </div>
+
+    <!-- CALORIE DASHBOARD -->
+    <section class="stats">
+
+        <div class="card stat-card">
+            <h3>🍎 Calories Consumed</h3>
+            <h2 id="consumedCalories">0 kcal</h2>
+        </div>
+
+        <div class="card stat-card">
+            <h3>🔥 Calories Burned</h3>
+            <h2 id="burnedCalories">0 kcal</h2>
+        </div>
+
+        <div class="card stat-card">
+            <h3>⚖️ Net Calories</h3>
+            <h2 id="netCalories">0 kcal</h2>
+        </div>
+
+    </section>
+
+    <!-- DAILY GOALS -->
+    <section class="card">
+        <h2>🎯 Daily Fitness Goals</h2>
+
+        <label for="calorieGoal">Daily Calorie Goal (kcal)</label>
+        <input type="number" id="calorieGoal" placeholder="Example: 2000">
+
+        <label for="exerciseGoal">Exercise Goal (minutes)</label>
+        <input type="number" id="exerciseGoal" placeholder="Example: 30">
+
+        <button onclick="saveGoals()">Save Goals</button>
+        <p id="goalProgress"></p>
+    </section>
+
+    <!-- FOOD TRACKER -->
+    <section class="card">
+        <h2>🍎 Food Calorie Tracker</h2>
+        <p>Select food and quantity. Calories are calculated automatically.</p>
+
+        <label for="foodName">Select Food</label>
+        <select id="foodName">
+            <option value="">Choose Food</option>
+            <option value="Banana">Banana (105 kcal each)</option>
+            <option value="Apple">Apple (95 kcal each)</option>
+            <option value="Rice">Cooked Rice (200 kcal per bowl)</option>
+            <option value="Chapati">Chapati (120 kcal each)</option>
+            <option value="Egg">Boiled Egg (78 kcal each)</option>
+            <option value="Milk">Milk (150 kcal per glass)</option>
+            <option value="Bread">Bread (75 kcal per slice)</option>
+            <option value="Dal">Dal (180 kcal per bowl)</option>
+            <option value="Chicken">Chicken (165 kcal per 100g)</option>
+            <option value="Oats">Oats (150 kcal per bowl)</option>
+        </select>
+
+        <label for="foodQuantity">Quantity</label>
+        <input type="number" id="foodQuantity" min="1" value="1">
+
+        <button onclick="addFood()">Add Food</button>
+
+        <h3>Today's Food</h3>
+        <ul id="foodList"></ul>
+    </section>
+
+    <!-- EXERCISE TRACKER -->
+    <section class="card">
+        <h2>🏃 Exercise Tracker</h2>
+        <p>Choose an activity and enter the duration to estimate calories burned.</p>
+
+        <label for="exerciseName">Select Exercise</label>
+        <select id="exerciseName">
+            <option value="">Choose Exercise</option>
+            <option value="Walking">Walking</option>
+            <option value="Running">Running</option>
+            <option value="Cycling">Cycling</option>
+            <option value="Gym">Gym Workout</option>
+            <option value="Yoga">Yoga</option>
+            <option value="Skipping">Skipping</option>
+        </select>
+
+        <label for="exerciseDuration">Duration (minutes)</label>
+        <input type="number" id="exerciseDuration" min="1" placeholder="Example: 15">
+
+        <button onclick="addExercise()">Calculate Calories</button>
+
+        <h3>Today's Exercises</h3>
+        <ul id="exerciseList"></ul>
+    </section>
+
+    <!-- WATER TRACKER -->
+    <section class="card">
+        <h2>💧 Daily Water Intake</h2>
+
+        <h3 id="waterProgress">0 / 2000 ml</h3>
+
+        <progress id="waterBar" value="0" max="2000"></progress>
+
+        <p>Daily example goal: 2 litres</p>
+
+        <button onclick="addWater()">+ Add 250 ml</button>
+        <button class="secondary" onclick="resetWater()">Reset Water</button>
+
+        <p id="waterMessage">Stay hydrated!</p>
+
+        <hr>
+
+        <h3>Water Reminder</h3>
+        <p>Receive a reminder every hour while FitTrack is open.</p>
+
+        <button onclick="enableWaterReminder()">Enable Reminder</button>
+        <button class="secondary" onclick="disableWaterReminder()">Stop Reminder</button>
+
+        <p id="reminderStatus">Reminder is off.</p>
+    </section>
+
+    <!-- WEEKLY REPORT -->
+    <section class="card">
+        <h2>📊 Weekly Fitness Report</h2>
+        <canvas id="weeklyChart"></canvas>
+    </section>
+
+    <!-- STREAK -->
+    <section class="card">
+        <h2>🔥 Workout Streak</h2>
+        <h2 id="streakCount">0 Days</h2>
+        <p>Keep moving towards your fitness goals!</p>
+    </section>
+
+</main>
+
+<footer>
+    <p>© 2026 FitTrack | Stay Healthy, Stay Fit!</p>
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
